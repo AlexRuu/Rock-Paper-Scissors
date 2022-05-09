@@ -4,8 +4,6 @@ function computerPlay() {
     return choice;
 }
 
-let playerChoice = prompt("Rock, Paper, or Scissors?").toLowerCase()
-
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == 'scissors' && computerSelection == 'paper') {
         return "You win! Scissors beats paper!";
@@ -31,9 +29,28 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    for (i = 1; i < 5; i++) {
+    let j = 0;
+    let l = 0;
+    for (i = 0; i < 5; i++) {
+        let playerChoice = prompt("Rock, Paper, or Scissors?").toLowerCase();
         let outcome = playRound(playerChoice, computerPlay());
-        return outcome;
+        if (outcome.includes("win")) {
+            j++;
+        }
+        else if (outcome.includes("lose")) {
+            l++;
+        }
+        console.log(outcome)
+    }
+    if (j > l) {
+        return "You're the winner!";
+    }
+    else if (j < l) {
+        return "You're the loser!";
+    }
+    else {
+        return "No winners..."
     }
 }
 
+console.log(game())
