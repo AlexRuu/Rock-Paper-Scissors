@@ -1,56 +1,39 @@
 function computerPlay() {
     const choices = ['Rock', 'Paper', 'Scissors'];
     let choice = choices[Math.floor(Math.random() * choices.length)].toLowerCase();
+    console.log(`The computer picked ${choice}`)
     return choice;
+
 }
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        return "You win! Scissors beats paper!";
+        console.log("You win! Scissors beats paper!");
     }
     else if (playerSelection == 'paper' && computerSelection == 'rock') {
-        return "You win! Paper beats rock!";
+        console.log("You win! Paper beats rock!");
     }
     else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        return "You win! Rock beats scissor!";
+        console.log("You win! Rock beats scissor!");
     }
     else if (playerSelection == 'rock' && computerSelection == 'paper') {
-        return "You lose! Paper beats rock!";
+        console.log("You lose! Paper beats rock!");
     } 
     else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-        return "You lose! Scissors beats paper!";
+        console.log("You lose! Scissors beats paper!");
     } 
     else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-        return "You lose! Rock beats scissor!";
+        console.log("You lose! Rock beats scissor!");
     } 
     else if (playerSelection == computerSelection) {
-        return "It's a tie!"
+        console.log("It's a tie!");
     }
 }
 
-function game() {
-    let j = 0;
-    let l = 0;
-    for (i = 0; i < 5; i++) {
-        let playerChoice = prompt("Rock, Paper, or Scissors?").toLowerCase();
-        let outcome = playRound(playerChoice, computerPlay());
-        if (outcome.includes("win")) {
-            j++;
-        }
-        else if (outcome.includes("lose")) {
-            l++;
-        }
-        console.log(outcome)
-    }
-    if (j > l) {
-        return "You're the winner!";
-    }
-    else if (j < l) {
-        return "You're the loser!";
-    }
-    else {
-        return "No winners..."
-    }
-}
+const selection = document.querySelectorAll('button');
 
-console.log(game())
+selection.forEach((button) => {
+    button.addEventListener('click', function() {
+        playRound(button.id, computerPlay());
+    });
+});
